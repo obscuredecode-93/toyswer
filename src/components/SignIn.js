@@ -1,18 +1,18 @@
-import withRoot from '../withRoot';
+import withRoot from "../withRoot";
 // --- Post bootstrap -----
-import React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
-import {connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { loginUser } from '../actions';
-import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import Typography from '../shared/Typography';
-import AppForm from './form/AppForm';
-import { email, required } from './form/validation';
-import RFTextField from './form/RFTextField';
-import FormButton from './form/FormButton';
-import FormFeedback from './form/FormFeedback';
+import React from "react";
+import { Field, Form, FormSpy } from "react-final-form";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { loginUser } from "../actions";
+import { makeStyles } from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
+import Typography from "../shared/Typography";
+import AppForm from "./form/AppForm";
+import { email, required } from "./form/validation";
+import RFTextField from "./form/RFTextField";
+import FormButton from "./form/FormButton";
+import FormFeedback from "./form/FormFeedback";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -30,24 +30,13 @@ const useStyles = makeStyles((theme) => ({
 function SignIn(props) {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
-  const [username, setUsername] = React.useState("");
-  const [password,setPassword] = React.useState("");
   const { loginError, isAuthenticated } = props;
   console.log(props);
-  if(isAuthenticated){
-    return <Redirect to="/" />
-  }
-  else {
-    const handleEmailChange = ({ target }) => {
-      setUsername(target.value);
-    };
-
-    const handlePasswordChange = ({ target }) => {
-      setPassword(target.value);
-    };
-
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  } else {
     const validate = (values) => {
-      const errors = required(['email', 'password'], values);
+      const errors = required(["email", "password"], values);
 
       if (!errors.email) {
         const emailError = email(values.email, values);
@@ -58,28 +47,38 @@ function SignIn(props) {
 
       return errors;
     };
-    
-    const onSubmit = async values => {
+
+    const onSubmit = async (values) => {
       const { dispatch } = props;
-      const {email, password} = values;
-      dispatch(loginUser(email,password))
+      const { email, password } = values;
+      dispatch(loginUser(email, password));
     };
-    
+
+    console.log(props);
     return (
       <React.Fragment>
         <AppForm>
           <React.Fragment>
-            <Typography variant="h3" gutterBottom marked="center" align="center">
+            <Typography
+              variant="h3"
+              gutterBottom
+              marked="center"
+              align="center"
+            >
               Sign In
             </Typography>
             <Typography variant="body2" align="center">
-              {'Not a member yet? '}
+              {"Not a member yet? "}
               <Link href="/signUp" align="center" underline="always">
                 Sign Up here
               </Link>
             </Typography>
           </React.Fragment>
-          <Form onSubmit={onSubmit} subscription={{ submitting: true }} validate={validate}>
+          <Form
+            onSubmit={onSubmit}
+            subscription={{ submitting: true }}
+            validate={validate}
+          >
             {({ handleSubmit, submitting }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <Field
@@ -122,13 +121,16 @@ function SignIn(props) {
                   color="secondary"
                   fullWidth
                 >
-                  {submitting || sent ? 'In progress…' : 'Sign In'}
+                  {submitting || sent ? "In progress…" : "Sign In"}
                 </FormButton>
               </form>
             )}
           </Form>
           <Typography align="center">
-            <Link underline="always" href="/premium-themes/onepirate/forgot-password/">
+            <Link
+              underline="always"
+              href="/premium-themes/onepirate/forgot-password/"
+            >
               Forgot password?
             </Link>
           </Typography>
@@ -142,7 +144,8 @@ function mapStateToProps(state) {
   return {
     isLoggingIn: state.auth.isLoggingIn,
     loginError: state.auth.loginError,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    userShort: state.auth.userShort,
   };
 }
 
