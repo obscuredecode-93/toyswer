@@ -9,7 +9,7 @@ import  SearchInput  from './SearchInput';
 const useStyles = makeStyles(theme => ({
   root: {},
   row: {
-    height: '42px',
+    height: '93px',
     display: 'flex',
     alignItems: 'center',
     marginTop: theme.spacing(1)
