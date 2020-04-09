@@ -8,59 +8,58 @@ import uuid from 'uuid/v1';
 import  ProductsToolbar from './ProductsToolbar';
 import ProductCard from './ProductCard';
 
+import yellowCarImage from '../../Images/car.jpeg';
+import wallEImage from '../../Images/walle.jpeg';
+import starWarsImage from '../../Images/star-wars.jpeg';
+import gameBoyImage from '../../Images/game-boy.jpeg';
+import giJoeImage from '../../Images/gi-joe.jpg';
+import blocksImage from '../../Images/blocks.jpeg';
+import woodenToysImage from '../../Images/wooden-toys.jpeg';
+
+//import threeandUpImage from '../img/ages3andUp.jpg';
+
+
 const mockData = [{
       id: uuid(),
-      title: 'Dropbox',
+      title: 'Yellow Toy Car',
       description:
-        'Dropbox is a file hosting service that offers cloud storage, file synchronization, a personal cloud.',
-      imageUrl: '/images/products/product_1.png',
-      totalDownloads: '594',
-      updatedAt: '27/03/2019'
+        'Speed off with your gang with this fun vehicle!',
+      imageUrl: yellowCarImage
     },
     {
       id: uuid(),
-      title: 'Medium Corporation',
+      title: 'Star Wars Robot',
       description:
-        'Medium is an online publishing platform developed by Evan Williams, and launched in August 2012.',
-      imageUrl: '/images/products/product_2.png',
-      totalDownloads: '625',
-      createdAt: '31/03/2019'
+        'Boys and girls can imagine racing into the galactic action to save the day!',
+      imageUrl: starWarsImage
     },
     {
       id: uuid(),
-      title: 'Slack',
+      title: 'Game Boy',
       description:
-        'Slack is a cloud-based set of team collaboration tools and services, founded by Stewart Butterfield.',
-      imageUrl: '/images/products/product_3.png',
-      totalDownloads: '857',
-      createdAt: '03/04/2019'
+        'The Classic Nintendo Gameboy!',
+      imageUrl: gameBoyImage
     },
     {
       id: uuid(),
-      title: 'Lyft',
+      title: 'GI Joe',
       description:
-        'Lyft is an on-demand transportation company based in San Francisco, California.',
-      imageUrl: '/images/products/product_4.png',
-      totalDownloads: '406',
-      createdAt: '04/04/2019'
+        'Articulated intelligence specialist action figure comes with a weapons and a display stand.',
+      imageUrl: giJoeImage
     },
     {
       id: uuid(),
-      title: 'GitHub',
+      title: 'Blocks',
       description:
-        'GitHub is a web-based hosting service for version control of code using Git.',
-      imageUrl: '/images/products/product_5.png',
-      totalDownloads: '835',
-      createdAt: '04/04/2019'
+        'Help kids develop strong motor skills and even resilience as they experiment with building, knocking blocks over, and building again.',
+      imageUrl: blocksImage
     },
     {
       id: uuid(),
-      title: 'Squarespace',
+      title: 'Wooden Animal Toys',
       description:
-        'Squarespace provides software as a service for website building and hosting. Headquartered in NYC.',
-      imageUrl: '/images/products/product_6.png',
-      totalDownloads: '835',
-      createdAt: '04/04/2019'
+        'The beautiful toy set can be used in many different ways to give your little one endless hours of fun and games!',
+      imageUrl: woodenToysImage
     }
   ];
 

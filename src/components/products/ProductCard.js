@@ -16,10 +16,10 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 const useStyles = makeStyles(theme => ({
   root: {},
   imageContainer: {
-    height: 64,
-    width: 64,
+    height: 320,
+    width: 320,
     margin: '0 auto',
-    border: `1px solid ${theme.palette.divider}`,
+    // border: `1px solid ${theme.palette.divider}`,
     borderRadius: '5px',
     overflow: 'hidden',
     display: 'flex',
@@ -81,24 +81,24 @@ const ProductCard = props => {
             className={classes.statsItem}
             item
           >
-            <AccessTimeIcon className={classes.statsIcon} />
+            {/* <!--AccessTimeIcon className={classes.statsIcon} /> */}
             <Typography
               display="inline"
               variant="body2"
             >
-              Updated 2hr ago
+            
             </Typography>
           </Grid>
           <Grid
             className={classes.statsItem}
             item
           >
-            <GetAppIcon className={classes.statsIcon} />
+            {/* <GetAppIcon className={classes.statsIcon} /> */}
             <Typography
               display="inline"
               variant="body2"
             >
-              {product.totalDownloads} Downloads
+              {/* {product.totalDownloads} Downloads */}
             </Typography>
           </Grid>
         </Grid>
