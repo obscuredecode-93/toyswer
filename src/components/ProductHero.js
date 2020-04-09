@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '../shared/Button';
 import Typography from '../shared/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
+import ProductCategories from './ProductCategories';
 import backgroundImage from '../img/backgroundBanner.jpg'
+import { animateScroll } from 'react-scroll';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = (theme) => ({
   background: {
@@ -30,7 +33,11 @@ const styles = (theme) => ({
 
 function ProductHero(props) {
   const { classes } = props;
-
+  const matchesPhone = useMediaQuery('(min-width:600px)');
+  console.log(props);
+  useEffect(() => {
+    animateScroll.scrollToTop({});
+  });
   return (
     <ProductHeroLayout backgroundClassName={classes.background}>
       {/* Increase the network loading priority of the background image. */}
@@ -47,7 +54,11 @@ function ProductHero(props) {
         size="medium"
         className={classes.button}
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        onClick={(event) => {
+          animateScroll.scrollMore(1500, {
+            smooth:true,
+          });
+        }}
       >
         Explore our wide catalogue
       </Button>
@@ -57,7 +68,12 @@ function ProductHero(props) {
         size="medium"
         className={classes.button}
         component="a"
-        href="/premium-themes/onepirate/sign-up/"
+        href="#section2"
+        onClick={(event) => {
+          animateScroll.scrollTo(2200, {
+            smooth:true,
+          });
+        }}
       >
         Donate your toys now
       </Button>

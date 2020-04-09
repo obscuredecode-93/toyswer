@@ -1,5 +1,6 @@
 import withRoot from '../withRoot';
-import React from 'react';
+import React, {useRef, createRef} from 'react';
+import ScrollableAnchor from 'react-scrollable-anchor';
 import Header from './Header';
 import Footer from './Footer';
 import ProductHero from './ProductHero';
@@ -18,6 +19,7 @@ import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "../actions";
 import rootReducer from "../reducers";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { Element } from 'react-scroll';
 
 function configureStore(persistedState){
     const store = createStore(
@@ -31,18 +33,25 @@ function configureStore(persistedState){
 
 const App = () => {
     const store = configureStore();
+    const ref = useRef();
+    console.log(ref);
+    const refCategories = useRef();
+    const refDonation = useRef();
     return(
         <Provider store={store} >
                 <CssBaseline />
                 <Header/>
-            <BrowserRouter>
+            <BrowserRouter ref={ref}>
             <Switch>
                 <Route path="/" exact>
-                    <ProductHero />
+                    <ProductHero categoryRef={refCategories}  />
                     <ProductValues />
-                    <ProductCategories />
+                        <Element name="myScrollToElement"></Element>
+                        <ProductCategories ref={refCategories} />
                     <ProductCTA />
-                    <ProductSmokingHero />
+                    <ScrollableAnchor id={'section2'}>
+                        <ProductSmokingHero ref={refDonation} />
+                    </ScrollableAnchor>
                 </Route>
                 <Route path="/signIn" exact>
                     <SignIn />    

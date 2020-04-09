@@ -46,7 +46,7 @@ const styles = (theme) => ({
       opacity: 0,
     },
     '&:hover $imageTitle': {
-      border: '4px solid currentColor',
+      border: '4px solid currentColor', 
     },
   },
   imageButton: {
@@ -92,6 +92,9 @@ const styles = (theme) => ({
     left: 'calc(50% - 9px)',
     transition: theme.transitions.create('opacity'),
   },
+  categoryText: {
+    color: theme.palette.common.white
+  }
 });
 
 function ProductCategories(props) {
@@ -182,7 +185,7 @@ function ProductCategories(props) {
                 color="inherit"
                 className={classes.imageTitle}
               >
-                <Link href="/ProductList">{image.title}</Link> 
+                <Link className={classes.categoryText} href="/ProductList">{image.title}</Link> 
                 <div className={classes.imageMarked} />
               </Typography>
             </div>

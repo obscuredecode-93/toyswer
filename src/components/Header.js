@@ -190,11 +190,13 @@ const Header = (props) => {
         <div className={classes.left}>
           <IconButton onClick={(event) => (window.location.href = "/")}>
             <ChildCareIcon className={classes.icon} fontSize="large" />
-
-            <Typography color="inherit" variant="h5">
-              ToysWeR
-            </Typography>
+              <font color = "white">
+                <Typography color="inherit" variant="h5">
+                  ToysWeR
+                </Typography>
+              </font>
           </IconButton>
+          
         </div>
         <IconButton
           color="inherit"
