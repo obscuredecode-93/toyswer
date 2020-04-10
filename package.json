@@ -62,5 +62,6 @@
   "bugs": {
     "url": "https://github.com/obscuredecode-93/toyswer/issues"
   },
-  "homepage": "."
+  "homepage": "http://.",
+  "devDependencies": {}
 }
