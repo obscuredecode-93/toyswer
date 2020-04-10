@@ -1,37 +1,37 @@
-import withRoot from '../withRoot';
-import React, {useRef, createRef} from 'react';
-import ScrollableAnchor from 'react-scrollable-anchor';
-import Header from './Header';
-import Footer from './Footer';
-import ProductHero from './ProductHero';
-import {CssBaseline} from '@material-ui/core';
-import ProductValues from './ProductValues';
-import ProductCategories from './ProductCategories';
-import ProductCTA from './ProductCTA';
-import ProductSmokingHero from './ProductSmokingHero';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import ProductList from './products/ProductList';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import withRoot from "../withRoot";
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import ProductHero from "./ProductHero";
+import { CssBaseline } from "@material-ui/core";
+import ProductValues from "./ProductValues";
+import ProductCategories from "./ProductCategories";
+import ProductCTA from "./ProductCTA";
+import ProductSmokingHero from "./ProductSmokingHero";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import ProductList from "./products/ProductList";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "../actions";
 import rootReducer from "../reducers";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { Element } from 'react-scroll';
+import { composeWithDevTools } from "redux-devtools-extension";
+import UsersTable from "./usersTable";
 
-function configureStore(persistedState){
-    const store = createStore(
-        rootReducer,
-        persistedState,
-        composeWithDevTools(applyMiddleware(thunkMiddleware))
-    );
-    store.dispatch(verifyAuth());
-    return store;
+function configureStore(persistedState) {
+  const store = createStore(
+    rootReducer,
+    persistedState,
+    composeWithDevTools(applyMiddleware(thunkMiddleware))
+  );
+  store.dispatch(verifyAuth());
+  return store;
 }
 
 const App = () => {
+<<<<<<< Updated upstream
     const store = configureStore();
     const ref = useRef();
     console.log(ref);
@@ -68,5 +68,4 @@ const App = () => {
         </Provider>
     );
 }
-
 export default withRoot(App);
