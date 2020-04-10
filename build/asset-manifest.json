@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0e5fb2cc.chunk.css",
+    "main.js": "/static/js/main.c927b9c2.chunk.js",
+    "main.js.map": "/static/js/main.c927b9c2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bf3f0b9a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bf3f0b9a.js.map",
+    "static/js/2.25221b80.chunk.js": "/static/js/2.25221b80.chunk.js",
+    "static/js/2.25221b80.chunk.js.map": "/static/js/2.25221b80.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.11c668dc2521f800ed7e78974a6d5a70.js": "/precache-manifest.11c668dc2521f800ed7e78974a6d5a70.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.0e5fb2cc.chunk.css.map": "/static/css/main.0e5fb2cc.chunk.css.map",
+    "static/js/2.25221b80.chunk.js.LICENSE.txt": "/static/js/2.25221b80.chunk.js.LICENSE.txt",
+    "static/media/12andUp.jpg": "/static/media/12andUp.b48fd188.jpg",
+    "static/media/6andUp.jpg": "/static/media/6andUp.f5edd40c.jpg",
+    "static/media/Accessories.jpg": "/static/media/Accessories.889c1953.jpg",
+    "static/media/Apparel.jpg": "/static/media/Apparel.7f0c831d.jpg",
+    "static/media/Electronics.jpg": "/static/media/Electronics.7ca148a1.jpg",
+    "static/media/Merchandise.jpg": "/static/media/Merchandise.f96e3f10.jpg",
+    "static/media/ages3andUp.jpg": "/static/media/ages3andUp.375d75cb.jpg",
+    "static/media/backgroundBanner.jpg": "/static/media/backgroundBanner.9d840c35.jpg",
+    "static/media/comic.jpg": "/static/media/comic.5484f293.jpg",
+    "static/media/donationBanner.jpg": "/static/media/donationBanner.20c91051.jpg",
+    "static/media/petToys.jpg": "/static/media/petToys.a9f2683c.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bf3f0b9a.js",
+    "static/js/2.25221b80.chunk.js",
+    "static/css/main.0e5fb2cc.chunk.css",
+    "static/js/main.c927b9c2.chunk.js"
+  ]
+}
