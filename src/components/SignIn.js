@@ -13,6 +13,13 @@ import { email, required } from "./form/validation";
 import RFTextField from "./form/RFTextField";
 import FormButton from "./form/FormButton";
 import FormFeedback from "./form/FormFeedback";
+import Snackbar from "../shared/Snackbar";
+import MuiAlert from '@material-ui/lab/Alert';
+
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -30,7 +37,20 @@ const useStyles = makeStyles((theme) => ({
 function SignIn(props) {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
-  const { loginError, isAuthenticated } = props;
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const { loginError, isAuthenticated, error } = props;
+  if(loginError) setOpen(true);
   console.log(props);
   if (isAuthenticated) {
     return <Redirect to="/" />;
@@ -57,6 +77,11 @@ function SignIn(props) {
     console.log(props);
     return (
       <React.Fragment>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            { error }
+          </Alert>
+        </Snackbar>
         <AppForm>
           <React.Fragment>
             <Typography
@@ -146,6 +171,7 @@ function mapStateToProps(state) {
     loginError: state.auth.loginError,
     isAuthenticated: state.auth.isAuthenticated,
     userShort: state.auth.userShort,
+    error: state.auth.error
   };
 }
 

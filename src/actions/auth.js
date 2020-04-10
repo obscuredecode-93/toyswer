@@ -25,9 +25,10 @@ const receiveLogin = (userShort) => {
   };
 };
 
-const loginError = () => {
+const loginError = (error) => {
   return {
     type: LOGIN_FAILURE,
+    error,
   };
 };
 
@@ -90,36 +91,20 @@ export const loginUser = (email, password) => (dispatch) => {
       },
     })
     .then((response) => {
-      const [firstname, role] = response.data;
-      dispatch(receiveLogin({ firstname, role }));
+      if( response.data === null){
+        dispatch(loginError("Incorrect username and/or password"));
+      } else {
+        const [firstname, role] = response.data;
+        dispatch(receiveLogin({ firstname, role }));
+      }
     })
     .catch((error) => {
-      dispatch(loginError());
+      dispatch(loginError("Something went wrong"));
     });
-  // myFirebase
-  //   .auth()
-  //   .signInWithEmailAndPassword(email, password)
-  //   .then((user) => {
-  //
-  //   })
-  //   .catch((error) => {
-  //     //Do something with the error if you want!
-  //     dispatch(loginError());
-  //   });
 };
 
 export const logoutUser = () => (dispatch) => {
-  // dispatch(requestLogout());
-  // myFirebase
-  //   .auth()
-  //   .signOut()
-  //   .then(() => {
-  //     dispatch(receiveLogout());
-  //   })
-  //   .catch((error) => {
-  //     //Do something with the error if you want!
-  //     dispatch(logoutError());
-  //   });
+   dispatch(receiveLogout());
 };
 
 export const registerUser = (

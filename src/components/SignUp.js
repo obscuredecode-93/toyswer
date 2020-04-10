@@ -57,7 +57,7 @@ function SignUp(props) {
       const { firstName, lastName, email, password } = values;
       const { dispatch } = props;
       const date = new Date();
-      const role = "admin";
+      const role = "user";
       dispatch(registerUser(firstName, lastName, email, password, date, role));
       console.log(props);
     };

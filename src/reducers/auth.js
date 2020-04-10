@@ -25,6 +25,7 @@ export default (
     registerError: false,
     user: {},
     userShort: {},
+    error:""
   },
   action
 ) => {
@@ -48,6 +49,7 @@ export default (
         isLoggingIn: false,
         isAuthenticated: false,
         loginError: true,
+        error: action.error
       };
     case LOGOUT_REQUEST:
       return {
