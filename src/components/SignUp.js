@@ -11,7 +11,7 @@ import { email, required } from "./form/validation";
 import RFTextField from "./form/RFTextField";
 import FormButton from "./form/FormButton";
 import FormFeedback from "./form/FormFeedback";
-import { Redirect, HashRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { registerUser } from "../actions";

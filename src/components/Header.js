@@ -12,7 +12,6 @@ import {
   IconButton,
   Drawer,
   Divider,
-  CssBaseline,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
@@ -41,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    fontSize: 24,
   },
   hide: {
     display: "none",
@@ -93,9 +93,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "10px",
     paddingLeft: "8px",
   },
-  title: {
-    fontSize: 24,
-  },
   placeholder: toolbarStyles(theme).root,
   toolbar: {
     justifyContent: "space-between",
@@ -132,7 +129,7 @@ const Header = (props) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   console.log(props);
-  const { loginError, isAuthenticated, user } = props;
+  const {isAuthenticated, user } = props;
   console.log(user);
   const handleDrawerOpen = () => {
     setOpen(true);

@@ -9,7 +9,6 @@ import  ProductsToolbar from './ProductsToolbar';
 import ProductCard from './ProductCard';
 
 import yellowCarImage from '../../Images/car.jpeg';
-import wallEImage from '../../Images/walle.jpeg';
 import starWarsImage from '../../Images/star-wars.jpeg';
 import gameBoyImage from '../../Images/game-boy.jpeg';
 import giJoeImage from '../../Images/gi-joe.jpg';

@@ -1,10 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '../shared/Button';
 import Typography from '../shared/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
-import ProductCategories from './ProductCategories';
 import backgroundImage from '../img/backgroundBanner.jpg'
 import { animateScroll } from 'react-scroll';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -33,7 +32,6 @@ const styles = (theme) => ({
 
 function ProductHero(props) {
   const { classes } = props;
-  const matchesPhone = useMediaQuery('(min-width:600px)');
   console.log(props);
   useEffect(() => {
     animateScroll.scrollToTop({});
