@@ -31,41 +31,37 @@ function configureStore(persistedState) {
 }
 
 const App = () => {
-<<<<<<< Updated upstream
-    const store = configureStore();
-    const ref = useRef();
-    console.log(ref);
-    const refCategories = useRef();
-    const refDonation = useRef();
-    return(
-        <Provider store={store} >
-                <CssBaseline />
-                <Header/>
-            <BrowserRouter ref={ref}>
-            <Switch>
-                <Route path="/" exact>
-                    <ProductHero categoryRef={refCategories}  />
-                    <ProductValues />
-                        <Element name="myScrollToElement"></Element>
-                        <ProductCategories ref={refCategories} />
-                    <ProductCTA />
-                    <ScrollableAnchor id={'section2'}>
-                        <ProductSmokingHero ref={refDonation} />
-                    </ScrollableAnchor>
-                </Route>
-                <Route path="/signIn" exact>
-                    <SignIn />    
-                </Route>
-                <Route path="/signUp" exact>
-                    <SignUp />    
-                </Route>
-                <Route path="/ProductList" exact>
-                    <ProductList />
-                </Route>
-            </Switch>
-            </BrowserRouter>
-                <Footer />
-        </Provider>
-    );
-}
+  const store = configureStore();
+  return (
+    <Provider store={store}>
+      <CssBaseline />
+      <Header />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact>
+            <ProductHero />
+            <ProductValues />
+            <ProductCategories />
+            <ProductCTA />
+            <ProductSmokingHero />
+          </Route>
+          <Route path="/signIn" exact>
+            <SignIn />
+          </Route>
+          <Route path="/signUp" exact>
+            <SignUp />
+          </Route>
+          <Route path="/ProductList" exact>
+            <ProductList />
+          </Route>
+          <Route path="/usersTable" exact>
+            <UsersTable />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+      <Footer />
+    </Provider>
+  );
+};
+
 export default withRoot(App);
