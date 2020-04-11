@@ -17,5 +17,5 @@
 
 import axios from "axios";
 export default axios.create({
-  baseURL: "http://localhost:8080/users",
+  baseURL: "https://thawing-shore-8996.herokuapp.com/users",
 });
