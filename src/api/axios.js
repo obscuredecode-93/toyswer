@@ -17,5 +17,5 @@
 
 import axios from "axios";
 export default axios.create({
-  baseURL: "https://thawing-shore-8996.herokuapp.com/users",
+  baseURL: "https://cors-anywhere.herokuapp.com/https://thawing-shore-8996.herokuapp.com/users",
 });
