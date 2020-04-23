@@ -10,6 +10,8 @@ import ProductCTA from "./ProductCTA";
 import ProductSmokingHero from "./ProductSmokingHero";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Cart from './Cart';
+import Checkout from './Checkout';
 import ProductList from "./products/ProductList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -35,8 +37,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Header />
       <BrowserRouter>
+      <Header />
         <Switch>
           <Route path="/" exact>
             <ProductHero />
@@ -56,6 +58,12 @@ const App = () => {
           </Route>
           <Route path="/usersTable" exact>
             <UsersTable />
+          </Route>
+          <Route path="/cart" exact>
+            <Cart />
+          </Route>
+          <Route path="/checkout" exact>
+           <Checkout /> 
           </Route>
         </Switch>
       </BrowserRouter>

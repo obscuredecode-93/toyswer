@@ -1,4 +1,5 @@
 import "./Header.css";
+import { useHistory } from 'react-router-dom';
 import React from "react";
 import { connect } from "react-redux";
 import AppBar from "../shared/AppBar";
@@ -8,11 +9,12 @@ import Toolbar, { styles as toolbarStyles } from "../shared/Toolbar";
 import {
   InputAdornment,
   TextField,
-  Link,
   IconButton,
   Drawer,
   Divider,
 } from "@material-ui/core";
+import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
 import SearchIcon from "@material-ui/icons/Search";
@@ -127,10 +129,9 @@ const useStyles = makeStyles((theme) => ({
 const Header = (props) => {
   const classes = useStyles();
   const theme = useTheme();
+  //const history = useHistory();
   const [open, setOpen] = React.useState(false);
-  console.log(props);
   const {isAuthenticated, user } = props;
-  console.log(user);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -145,7 +146,7 @@ const Header = (props) => {
         variant="h6"
         underline="none"
         className={classes.alignCenter}
-        href="/signIn"
+        to="/signIn"
       >
         {"Sign In"}
       </Link>
@@ -153,7 +154,7 @@ const Header = (props) => {
         variant="h6"
         underline="none"
         className={clsx(classes.linkSecondary, classes.alignCenter)}
-        href="/signUp"
+        to="/signUp"
       >
         {"Sign Up"}
       </Link>
@@ -195,6 +196,9 @@ const Header = (props) => {
           </IconButton>
           
         </div>
+        <Link to="/cart" color="inherit" class >
+          <ShoppingCartIcon/>
+        </Link>
         <IconButton
           color="inherit"
           aria-label="open drawer"

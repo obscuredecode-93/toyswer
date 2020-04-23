@@ -50,12 +50,12 @@ function SignIn(props) {
     setOpen(false);
   };
   const { loginError, isAuthenticated, error } = props;
-  if(loginError) setOpen(true);
-  console.log(props);
+  //console.log(props);
   if (isAuthenticated) {
     return <Redirect to="/" />;
   } else {
     const validate = (values) => {
+      console.log("Please validate")
       const errors = required(["email", "password"], values);
 
       if (!errors.email) {
@@ -68,6 +68,7 @@ function SignIn(props) {
       return errors;
     };
 
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     const onSubmit = async (values) => {
       const { dispatch } = props;
       const { email, password } = values;
@@ -104,8 +105,9 @@ function SignIn(props) {
             subscription={{ submitting: true }}
             validate={validate}
           >
-            {({ handleSubmit, submitting }) => (
+            {({ handleSubmit, submitting,form }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
+                {console.log(form)}
                 <Field
                   autoComplete="email"
                   autoFocus

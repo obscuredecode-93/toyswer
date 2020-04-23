@@ -1,7 +1,13 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
+import { connect } from "react-redux";
+import { required } from '../form/validation';
+import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { addToCart } from '../../actions/cart';
 import {
   Card,
   CardContent,
@@ -13,6 +19,14 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {},
+  form:{
+    width:'100%'
+  },
+  fab:{
+  },
+  feedback: {
+    marginTop: theme.spacing(2),
+  },
   imageContainer: {
     height: 320,
     width: 320,
@@ -34,14 +48,21 @@ const useStyles = makeStyles(theme => ({
   statsIcon: {
     color: theme.palette.icon,
     marginRight: theme.spacing(1)
+  },
+  quantityField:{
+    color: theme.palette.icon
   }
 }));
 
 const ProductCard = props => {
   const { className, product, ...rest } = props;
-
+  const [error, setError] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const classes = useStyles();
-
+  const handleClick = (id)=>{
+    props.addToCart(id); 
+  }
+  
   return (
     <Card
       {...rest}
@@ -71,35 +92,9 @@ const ProductCard = props => {
       </CardContent>
       <Divider />
       <CardActions>
-        <Grid
-          container
-          justify="space-between"
-        >
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            {/* <!--AccessTimeIcon className={classes.statsIcon} /> */}
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-            
-            </Typography>
-          </Grid>
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            {/* <GetAppIcon className={classes.statsIcon} /> */}
-            <Typography
-              display="inline"
-              variant="body2"
-            >
-              {/* {product.totalDownloads} Downloads */}
-            </Typography>
-          </Grid>
-        </Grid>
+        <Fab className={classes.fab} color="primary" aria-label="add" onClick={() => {handleClick(product.id)}}> 
+          <AddShoppingCartIcon />
+        </Fab>
       </CardActions>
     </Card>
   );
@@ -107,7 +102,17 @@ const ProductCard = props => {
 
 ProductCard.propTypes = {
   className: PropTypes.string,
-  product: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired,
 };
+const mapStateToProps = (state)=>{
+  return {
+    items: state.items
+  }
+}
+const mapDispatchToProps= (dispatch)=>{
+  return{
+      addToCart: (id)=>{dispatch(addToCart(id))}
+  }
+}
 
-export default ProductCard;
+export default connect(mapStateToProps,mapDispatchToProps)(ProductCard);
