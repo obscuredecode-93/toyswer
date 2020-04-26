@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { removeItem,addQuantity,subtractQuantity} from '../actions/cart'
 import Recipe from './Recipe'
 import { List,
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart= (props) => {
     //to remove the item completely
+    const { isAuthenticated } = props;
     const handleRemove = (id)=>{
         props.removeItem(id);
     }
@@ -46,10 +47,13 @@ const Cart= (props) => {
     }
 
     const classes = useStyles();
+    if(!isAuthenticated){
+        return <Redirect to="/signIn" />
+    }
     let addedItems = props.items.length ?
         (  props.items.map(item=>{
             return(
-                    <ListItem alignItems="flex-start">
+                    <ListItem alignItems="flex-start" key={item.id}>
                         <ListItemAvatar>
                             <Avatar src={item.imageUrl} alt={item.imageUrl} />
                         </ListItemAvatar>
@@ -115,6 +119,8 @@ const Cart= (props) => {
 const mapStateToProps = (state)=>{
     return{
         items: state.cart.addedItems,
+        products: state.products.products,
+        isAuthenticated: state.auth.isAuthenticated
         //addedItems: state.addedItems
     }
 }

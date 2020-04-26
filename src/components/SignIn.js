@@ -55,7 +55,6 @@ function SignIn(props) {
     return <Redirect to="/" />;
   } else {
     const validate = (values) => {
-      console.log("Please validate")
       const errors = required(["email", "password"], values);
 
       if (!errors.email) {
@@ -79,7 +78,7 @@ function SignIn(props) {
     return (
       <React.Fragment>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="success">
+          <Alert onClose={handleClose} severity="error">
             { error }
           </Alert>
         </Snackbar>
@@ -153,14 +152,6 @@ function SignIn(props) {
               </form>
             )}
           </Form>
-          <Typography align="center">
-            <Link
-              underline="always"
-              href="/premium-themes/onepirate/forgot-password/"
-            >
-              Forgot password?
-            </Link>
-          </Typography>
         </AppForm>
       </React.Fragment>
     );

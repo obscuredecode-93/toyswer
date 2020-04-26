@@ -2,10 +2,10 @@ import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '
 import axios from 'axios'
 
 
-export const addToCart= (id)=>{
+export const addToCart= (product)=>{
     return{
         type: ADD_TO_CART,
-        id
+        product
     }
 }
 //remove item action

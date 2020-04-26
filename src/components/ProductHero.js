@@ -1,4 +1,5 @@
-import React, {useEffect } from 'react';
+import React, {useEffect,useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '../shared/Button';
@@ -6,6 +7,7 @@ import Typography from '../shared/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 import backgroundImage from '../img/backgroundBanner.jpg'
 import { animateScroll } from 'react-scroll';
+import Snackbar from '../shared/Snackbar';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = (theme) => ({
@@ -31,13 +33,33 @@ const styles = (theme) => ({
 });
 
 function ProductHero(props) {
-  const { classes } = props;
+  const [open, setOpen] = React.useState(false);
+  const {classes, isAuthenticated, hasRegistered} = props;
   console.log(props);
   useEffect(() => {
     animateScroll.scrollToTop({});
   });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const generateSnackbar = (message) => {
+    return (
+      <Snackbar
+        open={open}
+        onClose={handleClose}
+        message={message}
+      />
+    )
+  }
   return (
     <ProductHeroLayout backgroundClassName={classes.background}>
+      { isAuthenticated? generateSnackbar("Successfully signed in!"): null}
+      { hasRegistered? generateSnackbar("Successfully signed in!"): null}
       {/* Increase the network loading priority of the background image. */}
       <img style={{ display: 'none' }} src={backgroundImage} alt="increase priority" />
       <Typography color="inherit" align="center" variant="h2" marked="center">
@@ -86,4 +108,10 @@ ProductHero.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProductHero);
+const mapStateToProps = (state) => {
+  return{
+    hasRegistered: state.auth.hasRegistered,
+    isAuthenticted: state.auth.isAuthenticated
+  }
+}
+export default connect(mapStateToProps)(withStyles(styles)(ProductHero));

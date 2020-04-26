@@ -16,24 +16,36 @@ import ProductList from "./products/ProductList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
+
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
 import thunkMiddleware from "redux-thunk";
 import { verifyAuth } from "../actions";
 import rootReducer from "../reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
-import UsersTable from "./usersTable";
+import UsersTable from "./admin/usersTable";
+import ProductsTable from "./admin/productsTable";
+import {loadState, saveState} from '../api/localStorage';
 
+const persistedState = loadState();
 function configureStore(persistedState) {
   const store = createStore(
     rootReducer,
     persistedState,
     composeWithDevTools(applyMiddleware(thunkMiddleware))
   );
+  
+  store.subscribe(() => {
+    saveState(store.getState());
+  })
+
   store.dispatch(verifyAuth());
   return store;
 }
 
 const App = () => {
-  const store = configureStore();
+  const store = configureStore(persistedState);
   return (
     <Provider store={store}>
       <CssBaseline />
@@ -58,6 +70,9 @@ const App = () => {
           </Route>
           <Route path="/usersTable" exact>
             <UsersTable />
+          </Route>
+          <Route path="/productsTable" exact>
+            <ProductsTable />
           </Route>
           <Route path="/cart" exact>
             <Cart />

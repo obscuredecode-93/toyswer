@@ -196,6 +196,7 @@ const Header = (props) => {
           </IconButton>
           
         </div>
+        { isAuthenticated?<Typography variant="h6"> Hello, {user.firstname} </Typography>:null}
         <Link to="/cart" color="inherit" class >
           <ShoppingCartIcon/>
         </Link>
@@ -252,7 +253,7 @@ const Header = (props) => {
 };
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
+    user: state.auth.userShort,
     loginError: state.auth.loginError,
     isAuthenticated: state.auth.isAuthenticated,
   };

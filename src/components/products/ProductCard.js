@@ -1,7 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import { connect } from "react-redux";
-import { required } from '../form/validation';
 import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -59,8 +58,8 @@ const ProductCard = props => {
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(0);
   const classes = useStyles();
-  const handleClick = (id)=>{
-    props.addToCart(id); 
+  const handleClick = (product)=>{
+    props.addToCart(product); 
   }
   
   return (
@@ -73,7 +72,7 @@ const ProductCard = props => {
           <img
             alt="Product"
             className={classes.image}
-            src={product.imageUrl}
+            src={product.pImgLink}
           />
         </div>
         <Typography
@@ -81,18 +80,18 @@ const ProductCard = props => {
           gutterBottom
           variant="h4"
         >
-          {product.title}
+          {product.pName}
         </Typography>
         <Typography
           align="center"
           variant="body1"
         >
-          {product.description}
+          {product.pDetails}
         </Typography>
       </CardContent>
       <Divider />
       <CardActions>
-        <Fab className={classes.fab} color="primary" aria-label="add" onClick={() => {handleClick(product.id)}}> 
+        <Fab className={classes.fab} color="primary" aria-label="add" onClick={() => {handleClick(product)}}> 
           <AddShoppingCartIcon />
         </Fab>
       </CardActions>

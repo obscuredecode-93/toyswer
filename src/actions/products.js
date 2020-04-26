@@ -1,6 +1,6 @@
 import { RETRIEVE_PRODUCTS, RETRIEVE_PRODUCTS_SUCCESS,RETRIEVE_PRODUCTS_FAILURE } from './types'
 import { mockData } from '../mockData';
-
+import axios from '../api/products';
 
 const retrieveProducts = () => {
     return{
@@ -22,7 +22,10 @@ const retrieveProductsFailure = () => {
 }
 
 export const getProducts = () => (dispatch) => {
-    //dispatch(retrieveProducts());
-    const products = mockData;
-    dispatch(retrieveProductsSuccess({products}));
+    dispatch(retrieveProducts());
+    axios.get('/all').then((response) => {
+        console.log(response.data);
+        const products = response.data;
+        dispatch(retrieveProductsSuccess({products}));
+    })
 }

@@ -55,7 +55,7 @@ function SignUp(props) {
     const onSubmit = async (values) => {
       //window.alert(JSON.stringify(values, 0, 2));
       const { firstName, lastName, email, password } = values;
-      const { dispatch } = props;
+      const { dispatch,hasRegistered,registerError } = props;
       const date = new Date();
       const role = "user";
       dispatch(registerUser(firstName, lastName, email, password, date, role));
