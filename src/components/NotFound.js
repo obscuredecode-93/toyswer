@@ -31,10 +31,10 @@ const NotFound = () => {
                 off to a page that does not exist</Typography>
             <Typography variant ="body2" paragraph>Don't worry we are here to help</Typography>
             <Grid container direction="row">
-                <Grid item xs={12} sm={6} sm={6} >
+                <Grid item xs={12} sm={6}>
                     <Link to="/">Back to Home</Link>
                 </Grid>
-                <Grid item xs={12} sm={6} sm={6}>
+                <Grid item xs={12} sm={6}>
                     <Link to="/SignUp">Sign Up to our exclusive membership</Link>
                 </Grid>
             </Grid>

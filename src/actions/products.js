@@ -1,5 +1,4 @@
-import { RETRIEVE_PRODUCTS, RETRIEVE_PRODUCTS_SUCCESS,RETRIEVE_PRODUCTS_FAILURE } from './types'
-import { mockData } from '../mockData';
+import { RETRIEVE_PRODUCTS, RETRIEVE_PRODUCTS_SUCCESS } from './types'
 import axios from '../api/products';
 
 const retrieveProducts = () => {
@@ -15,15 +14,10 @@ const retrieveProductsSuccess = (products) => {
     }
 }
 
-const retrieveProductsFailure = () => {
-    return{
-        type:RETRIEVE_PRODUCTS_FAILURE,
-    }
-}
 
-export const getProducts = () => (dispatch) => {
+export const getProductsByCategory = (category) => (dispatch) => {
     dispatch(retrieveProducts());
-    axios.get('/all').then((response) => {
+    axios.get(`/category/${category}`).then((response) => {
         console.log(response.data);
         const products = response.data;
         dispatch(retrieveProductsSuccess({products}));

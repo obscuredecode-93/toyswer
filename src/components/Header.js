@@ -12,8 +12,9 @@ import {
   IconButton,
   Drawer,
   Divider,
+  Link
 } from "@material-ui/core";
-import { Link } from 'react-router-dom';
+import { Link as RouterLink, withRouter} from 'react-router-dom';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
@@ -146,6 +147,7 @@ const Header = (props) => {
         variant="h6"
         underline="none"
         className={classes.alignCenter}
+        component={RouterLink}
         to="/signIn"
       >
         {"Sign In"}
@@ -154,6 +156,7 @@ const Header = (props) => {
         variant="h6"
         underline="none"
         className={clsx(classes.linkSecondary, classes.alignCenter)}
+        component={RouterLink}
         to="/signUp"
       >
         {"Sign Up"}
@@ -161,6 +164,7 @@ const Header = (props) => {
       <Link
         variant="h6"
         underline="none"
+        component={RouterLink}
         className={clsx(classes.linkSecondary, classes.alignCenter)}
         to="/aboutUs"
       >
@@ -182,19 +186,27 @@ const Header = (props) => {
       >
         {"Sign Out"}
       </Link>
+      <Link
+        variant="h6"
+        underline="none"
+        component={RouterLink}
+        className={clsx(classes.linkSecondary, classes.alignCenter)}
+        to="/aboutUs"
+      >
+        {"About Us"}
+      </Link>
     </React.Fragment>
   );
 
+  const history = useHistory();
   return (
     <AppBar
       position="fixed"
-      classes={clsx(classes.appBar, {
-        [classes.appBarShift]: open,
-      })}
+      className={classes.appBar}
     >
       <Toolbar color="primary" className={classes.toolbar}>
         <div className={classes.left}>
-          <IconButton onClick={(event) => (window.location.href = "/")}>
+          <IconButton onClick={() => history.push("/")}>
             <ChildCareIcon className={classes.icon} fontSize="large" />
               <font color = "white">
                 <Typography color="inherit" variant="h5">
@@ -205,7 +217,7 @@ const Header = (props) => {
           
         </div>
         { isAuthenticated?<Typography variant="h6"> Hello, {user.firstname} </Typography>:null}
-        <Link to="/cart" color="inherit" class >
+        <Link to="/cart" color="inherit" component={RouterLink} >
           <ShoppingCartIcon/>
         </Link>
         <IconButton
@@ -239,8 +251,7 @@ const Header = (props) => {
           <div className={classes.drawerBody}>
             <TextField
               id="filled-basic"
-              borderRadius="50%"
-              color="inherit"
+              color="primary"
               placeholder="Enter Search"
               className={classes.searchInput}
               InputProps={{
@@ -266,4 +277,4 @@ function mapStateToProps(state) {
     isAuthenticated: state.auth.isAuthenticated,
   };
 }
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

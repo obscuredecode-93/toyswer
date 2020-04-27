@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Form} from 'react-final-form';
+
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -66,26 +67,56 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
+
+const propTypes = {
+  onSubmit: PropTypes.func.isRequired
 }
 
-export default function Checkout() {
+export default function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
+  const [values,setValues] = React.useState(props.initialValues || {})
+  const handleNext = formValues => {
+    const { onSubmit } = props;
+    console.log(formValues);
+    if(activeStep === 2){    
+    }
+    setValues(formValues);
+    console.log(values);
     setActiveStep(activeStep + 1);
   };
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm />;
+      case 1:
+        return <PaymentForm />;
+      case 2:
+        console.log("Values" + values);
+        return <Review values={values} />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+  
+  // const validate = values => {
+  //   const activePage = React.Children.toArray(props.children)[
+  //     activeStep
+  //   ]
+  //   return activePage.props.validate ? activePage.props.validate(values) : {}
+  // }
+  const handleSubmit = values => {
+    const { children, onSubmit } = this.props
+    const { page } = this.state
+    const isLastPage = page === React.Children.count(children) - 1
+    if (isLastPage) {
+      return onSubmit(values)
+    } else {
+      this.next(values)
+    }
+  }
+
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -99,45 +130,54 @@ export default function Checkout() {
           <Typography component="h1" variant="h4" align="center">
             Checkout
           </Typography>
-          <Stepper activeStep={activeStep} className={classes.stepper}>
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                {getStepContent(activeStep)}
-                <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={classes.button}>
-                      Back
-                    </Button>
+          <Form
+            onSubmit={handleNext}
+          >
+            {({ handleSubmit, submitting, values }) => (
+              <form onSubmit={handleSubmit} >
+                <Stepper activeStep={activeStep} className={classes.stepper}>
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+                <React.Fragment>
+                  {activeStep === steps.length ? (
+                    <React.Fragment>
+                    <Typography variant="h5" gutterBottom>
+                      Thank you for your order.
+                    </Typography>
+                    <Typography variant="subtitle1">
+                      Your order number is #2001539. We have emailed your order confirmation, and will
+                      send you an update when your order has shipped.
+                    </Typography>
+                  </React.Fragment>
+                    ) : (
+                    <React.Fragment>
+                    {getStepContent(activeStep)}
+                    <div className={classes.buttons}>
+                      {activeStep !== 0 && (
+                        <Button onClick={handleBack} className={classes.button}>
+                          Back
+                        </Button>
+                      )}
+                      <Button
+                        type="submit"
+                        disabled={submitting}
+                        variant="contained"
+                        color="primary"
+                        className={classes.button}
+                      >
+                        {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                      </Button>
+                  </div>
+                </React.Fragment>
                   )}
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-                  </Button>
-                </div>
-              </React.Fragment>
+                </React.Fragment>
+              </form>  
             )}
-          </React.Fragment>
+          </Form>  
         </Paper>
         <Copyright />
       </main>

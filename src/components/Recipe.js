@@ -22,10 +22,10 @@ class Recipe extends Component{
             <Grid
             style={{ marginBottom: '3%'}}
             container
-            direction="row"
+            direction="column"
             justify="space-between"
             alignItems="flex-end">
-                <Box fontWeight="fontWeightBold"><Typography variant="body1" style={{ fontWeight:'bold'}}>
+                <Box fontWeight="fontWeightBold" style={{float: 'right'}}><Typography variant="body1" style={{ fontWeight:'bold'}}>
                     Total: {this.props.total.toFixed(2)}$
                 </Typography></Box>
                 

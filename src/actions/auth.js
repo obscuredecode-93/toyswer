@@ -2,11 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
-  LOGOUT_FAILURE,
-  LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  VERIFY_REQUEST,
-  VERIFY_SUCCESS,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
@@ -32,11 +28,7 @@ const loginError = (error) => {
   };
 };
 
-const requestLogout = () => {
-  return {
-    type: LOGOUT_REQUEST,
-  };
-};
+
 
 const receiveLogout = () => {
   return {
@@ -44,23 +36,7 @@ const receiveLogout = () => {
   };
 };
 
-const logoutError = () => {
-  return {
-    type: LOGOUT_FAILURE,
-  };
-};
 
-const verifyRequest = () => {
-  return {
-    type: VERIFY_REQUEST,
-  };
-};
-
-const verifySuccess = () => {
-  return {
-    type: VERIFY_SUCCESS,
-  };
-};
 
 const registerRequest = () => {
   return {

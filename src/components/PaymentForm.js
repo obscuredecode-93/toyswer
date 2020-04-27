@@ -4,8 +4,17 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Field } from 'react-final-form';
 
-export default function PaymentForm() {
+const TextFieldAdapter = ({ input, meta, ...rest }) => (
+  <TextField
+    {...input}
+    {...rest}
+    errorText={meta.touched ? meta.error : ''}
+  />
+)
+
+export default function PaymentForm(props) {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -13,13 +22,13 @@ export default function PaymentForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardName" label="Name on card" fullWidth />
+          <TextField required  id="cardName" label="Name on card" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="cardNumber" label="Card number" fullWidth />
+          <TextField required  id="cardNumber" label="Card number" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField required id="expDate" label="Expiry date" fullWidth />
+          <TextField required id="expDate"  label="Expiry date" fullWidth />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField

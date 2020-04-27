@@ -14,7 +14,6 @@ const useStyles = makeStyles({
 
 
 export default function MaterialTableDemo() {
-    const classes = useStyles();
     const [rows, setRows] = useState([]);
     useEffect(() => {
        axios.get("/all", {}).then((response) => {

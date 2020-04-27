@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [sent, setSent] = React.useState(false);
-  const { registerError, hasRegistered } = props;
+  const [sent] = React.useState(false);
+  const {hasRegistered } = props;
   if (hasRegistered) {
     return <Redirect to="/" />;
   } else {

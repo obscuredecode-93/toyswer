@@ -16,7 +16,6 @@ import ProductList from "./products/ProductList";
 import AboutUs from './AboutUs';
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { Provider } from "react-redux";
 import { connect } from "react-redux";
 
 
@@ -28,15 +27,13 @@ import NotFound from "./NotFound";
 
 const App = (props) => {
   const {isAuthenticated, role} = props;
-  console.log(props);
   const PrivateRoute = ({component:Component, ...rest}) => (
     <Route {...rest} render={(props) => (
       isAuthenticated === true && role === "admin" ? 
         <Component {...props} />: <Redirect to='/signIn' />
     )} />
   );
-
-  console.log(props);
+  
   return (
     <React.Fragment>
       <CssBaseline />

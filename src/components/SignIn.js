@@ -67,7 +67,6 @@ function SignIn(props) {
       return errors;
     };
 
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
     const onSubmit = async (values) => {
       const { dispatch } = props;
       const { email, password } = values;

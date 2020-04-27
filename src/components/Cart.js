@@ -9,8 +9,7 @@ import { removeItem,addQuantity,subtractQuantity} from '../actions/cart'
 import Recipe from './Recipe'
 import { List,
         ListItem,
-        ListItemAvatar,
-        Avatar,
+        Box,
         Button, 
         Typography,
         Container, 
@@ -19,17 +18,26 @@ import { List,
         ListItemText,
         Divider,
         IconButton} from '@material-ui/core';
+    import Image from 'material-ui-image';
 
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      paddingTop:'17%',
-      maxWidth: '36ch',
+      paddingTop:'6%',
       backgroundColor: theme.palette.background.paper,
     },
     inline: {
       display: 'inline',
     },
+    cartImage:{
+        width:'30%',
+        height:'30%',
+        borderRadius: '50%',
+        marginRight: theme.spacing(3)
+    },
+    floatRight:{
+        float:'right'
+    }
   }));
 
 const Cart= (props) => {
@@ -63,27 +71,25 @@ const Cart= (props) => {
         (  props.items.map(item=>{
             return(
                     <ListItem alignItems="flex-start" key={item.id}>
-                        {console.log("Refreshing")}
-                        <ListItemAvatar>
-                            <Avatar src={item.pImgLink} alt={item.pImgLink} />
-                        </ListItemAvatar>
+                        <Box className={classes.cartImage}>
+                            <Image src={item.pImgLink} alt={item.pImgLink}  />
+                        </Box>
                         <ListItemText
                             primary= {<Typography variant="h6">{item.pName}</Typography>}
                             secondary={
                                 <React.Fragment>
                                     <Typography
-                                    component="p"
                                     variant="body2"
                                     className={classes.inline}
                                     color="textPrimary"
                                     >
-                                        {item.desc}
+                                        {item.pDetails}
                                     </Typography>
                                     <Typography
-                                    component="p"
                                     variant="body1"
-                                    className={classes.inline}
+                                    className={classes.floatRight}
                                     color="textPrimary"
+                                    align="right"
                                     >
                                         Price: {item.price}$
                                     </Typography>
@@ -119,6 +125,8 @@ const Cart= (props) => {
             <p>No items</p>
         )}
                     </List>
+                <Divider />
+                <br/>
                 </div> 
                 <Recipe />          
             </Container>

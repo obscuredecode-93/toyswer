@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import {Link as RouterLink} from 'react-router-dom';
 import Typography from '../shared/Typography';
 
 import threeandUpImage from '../img/ages3andUp.jpg';
@@ -106,54 +107,63 @@ function ProductCategories(props) {
         threeandUpImage,
       title: 'Ages 3 and Up',
       width: '40%',
+      pCategory: 'ages 3 and up',
     },
     {
       url:
         sixandUpImage,
       title: 'Ages 6 and Up',
       width: '20%',
+      pCategory: 'ages 6 and up',
     },
     {
       url:
         twelveandUpImage,
       title: 'Ages 12 and up',
       width: '40%',
+      pCategory: 'ages 12 and up'
     },
     {
       url:
         apparelImage,
       title: 'Apparel',
       width: '38%',
+      pCategory:'apparel'
     },
     {
       url:
         accesoriesImage,
       title: 'Accesories',
       width: '38%',
+      pCategory:'accesories'
     },
     {
       url:
         electronicsImage,
       title: 'Electronics',
       width: '24%',
+      pCategory:'electronics'
     },
     {
       url:
         comicsImage,
       title: 'Comics',
       width: '40%',
+      pCategory: 'comics',
     },
     {
       url:
         merchandiseImage,
       title: 'Merchandise',
       width: '20%',
+      pCategory:'merchandise',
     },
     {
       url:
         petToysImage,
       title: 'Pet Toys',
       width: '40%',
+      pCategory: 'pet toys',
     },
   ];
 
@@ -185,7 +195,12 @@ function ProductCategories(props) {
                 color="inherit"
                 className={classes.imageTitle}
               >
-                <Link className={classes.categoryText} href="/ProductList">{image.title}</Link> 
+                <Link className={classes.categoryText} component={RouterLink} to={{
+                  pathname:"/ProductList",
+                  state:{
+                    category: image.pCategory
+                  }
+                 }}>{image.title}</Link> 
                 <div className={classes.imageMarked} />
               </Typography>
             </div>

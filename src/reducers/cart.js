@@ -1,11 +1,5 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY,ADD_SHIPPING } from '../actions/types';
-import yellowCarImage from '../Images/car.jpeg';
-import starWarsImage from '../Images/star-wars.jpeg';
-import gameBoyImage from '../Images/game-boy.jpeg';
-import giJoeImage from '../Images/gi-joe.jpg';
-import blocksImage from '../Images/blocks.jpeg';
-import woodenToysImage from '../Images/wooden-toys.jpeg';
-import uuid from 'uuid/v1';
+
 
 const initState = {
     items: [],

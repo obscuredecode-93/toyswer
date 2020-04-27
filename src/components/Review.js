@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -13,7 +14,6 @@ const products = [
   { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
   { name: 'Shipping', desc: '', price: 'Free' },
 ];
-const addresses = ['1 Material-UI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
   { name: 'Card type', detail: 'Visa' },
   { name: 'Card holder', detail: 'Mr John Smith' },
@@ -33,9 +33,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Review() {
+function Review(props) {
   const classes = useStyles();
-
+  const products = props.items;
+  const values = props.values;
+  const addresses = [values.address1,values.address2,values.city,values.state,values.zip];
+  console.log(props);
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -43,15 +46,15 @@ export default function Review() {
       </Typography>
       <List disablePadding>
         {products.map((product) => (
-          <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.desc} />
+          <ListItem className={classes.listItem} key={product.pId}>
+            <ListItemText primary={product.pName} secondary={product.pDetails} />
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            { products.total}
           </Typography>
         </ListItem>
       </List>
@@ -60,14 +63,14 @@ export default function Review() {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
+        <Typography gutterBottom>{ values.firstName + values.lastName }</Typography>
           <Typography gutterBottom>{addresses.join(', ')}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
             Payment details
           </Typography>
-          <Grid container>
+          {/* <Grid container>
             {payments.map((payment) => (
               <React.Fragment key={payment.name}>
                 <Grid item xs={6}>
@@ -78,9 +81,16 @@ export default function Review() {
                 </Grid>
               </React.Fragment>
             ))}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </React.Fragment>
   );
 }
+
+const mapStateToProps = (state) => {
+  return{
+    items: state.cart.addedItems
+  }
+}
+export default connect(mapStateToProps)(Review);

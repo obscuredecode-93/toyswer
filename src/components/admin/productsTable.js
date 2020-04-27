@@ -23,8 +23,6 @@ export default function ProductsTable() {
     const [rows, setRows] = useState([]);
     useEffect(() => {
        axios.get("/all", {}).then((response) => {
-       console.log(response.data);
-       const result = response.data;
        setRows({
         columns: [
           { title: 'ID', field: 'pId' },

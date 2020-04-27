@@ -1,4 +1,4 @@
-import React, {useEffect,useState } from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,7 +8,6 @@ import ProductHeroLayout from './ProductHeroLayout';
 import backgroundImage from '../img/backgroundBanner.jpg'
 import { animateScroll } from 'react-scroll';
 import Snackbar from '../shared/Snackbar';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const styles = (theme) => ({
   background: {

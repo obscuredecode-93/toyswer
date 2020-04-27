@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { connect } from "react-redux";
 import Fab from '@material-ui/core/Fab';
 import PropTypes from 'prop-types';
@@ -12,7 +12,6 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Grid,
   Divider
 } from '@material-ui/core';
 
