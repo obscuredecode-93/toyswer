@@ -17,6 +17,7 @@ import { List,
         CssBaseline,
         makeStyles,
         ListItemText,
+        Divider,
         IconButton} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,15 +51,24 @@ const Cart= (props) => {
     if(!isAuthenticated){
         return <Redirect to="/signIn" />
     }
-    let addedItems = props.items.length ?
+       
+    return(
+            <Container>
+                <CssBaseline />
+                <div className="cart">
+                    <Typography variant="h5">You have ordered:</Typography>
+                    {console.log(props)}
+                    <List className={classes.root} >
+                  {  props.items.length ?
         (  props.items.map(item=>{
             return(
                     <ListItem alignItems="flex-start" key={item.id}>
+                        {console.log("Refreshing")}
                         <ListItemAvatar>
-                            <Avatar src={item.imageUrl} alt={item.imageUrl} />
+                            <Avatar src={item.pImgLink} alt={item.pImgLink} />
                         </ListItemAvatar>
                         <ListItemText
-                            primary= {item.title}
+                            primary= {<Typography variant="h6">{item.pName}</Typography>}
                             secondary={
                                 <React.Fragment>
                                     <Typography
@@ -77,6 +87,7 @@ const Cart= (props) => {
                                     >
                                         Price: {item.price}$
                                     </Typography>
+                                    <Divider />
                                     <Typography
                                     component="p"
                                     variant="body1"
@@ -86,28 +97,27 @@ const Cart= (props) => {
                                         Quantity: {item.quantity}
                                     </Typography>
                                     <div className="add-remove">
-                                            <Link to="/cart"><IconButton onClick={()=>{handleAddQuantity(item.id)}}><ArrowDropUpIcon /></IconButton></Link>
-                                            <Link to="/cart"><IconButton onClick={()=>{handleSubtractQuantity(item.id)}}><ArrowDropDownIcon /></IconButton></Link>
+                                            <IconButton onClick={()=>{handleAddQuantity(item)}}><ArrowDropUpIcon /></IconButton>
+                                            <Link href="/cart"><IconButton onClick={()=>{handleSubtractQuantity(item)}}><ArrowDropDownIcon /></IconButton></Link>
                                     </div>
-                                        <Button className="waves-effect waves-light btn pink remove" onClick={()=>{handleRemove(item.id)}}>Remove</Button>
+                                        <Button color="secondary"
+                                                variant="contained"
+                                                size="medium"
+                                                className={classes.button}
+                                                onClick={()=>{handleRemove(item)}
+                                                }>Remove
+                                        </Button>
                                 </React.Fragment>
                             }
                         />
+                        <Divider />
                     </ListItem>
                     )
                 })
         ):             
         (
             <p>No items</p>
-        )
-       
-    return(
-            <Container>
-                <CssBaseline />
-                <div className="cart">
-                    <Typography variant="h5">You have ordered:</Typography>
-                    <List className={classes.root}>
-                        {addedItems}
+        )}
                     </List>
                 </div> 
                 <Recipe />          

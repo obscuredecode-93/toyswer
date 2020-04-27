@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid } from '@material-ui/core';
+import { Grid,Box } from '@material-ui/core';
 import Typography from '../shared/Typography';
 import Button from '../shared/Button';
 import { withRouter } from 'react-router-dom';
@@ -20,15 +20,17 @@ class Recipe extends Component{
     render(){
         return(
             <Grid
+            style={{ marginBottom: '3%'}}
             container
             direction="row"
             justify="space-between"
             alignItems="flex-end">
-                <Typography variant="body1" component="b">
-                    Total: {this.props.total}$
-                </Typography>
+                <Box fontWeight="fontWeightBold"><Typography variant="body1" style={{ fontWeight:'bold'}}>
+                    Total: {this.props.total.toFixed(2)}$
+                </Typography></Box>
+                
                 { console.log(this.props)}
-                <Button onClick={() => this.props.history.push("/checkout")}> Proceed to Checkout</Button>
+                <Button color="primary" variant="contained" onClick={() => this.props.history.push("/checkout")}> Proceed to Checkout</Button>
             </Grid>
         )
     }

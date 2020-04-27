@@ -9,23 +9,23 @@ export const addToCart= (product)=>{
     }
 }
 //remove item action
-export const removeItem=(id)=>{
+export const removeItem=(product)=>{
     return{
         type: REMOVE_ITEM,
-        id
+        product
     }
 }
 //subtract qt action
-export const subtractQuantity=(id)=>{
+export const subtractQuantity=(product)=>{
     return{
         type: SUB_QUANTITY,
-        id
+        product
     }
 }
 //add qt action
-export const addQuantity=(id)=>{
+export const addQuantity=(product)=>{
     return{
         type: ADD_QUANTITY,
-        id
+        product
     }
 }

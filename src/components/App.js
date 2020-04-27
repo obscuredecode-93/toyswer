@@ -15,42 +15,30 @@ import Checkout from './Checkout';
 import ProductList from "./products/ProductList";
 import AboutUs from './AboutUs';
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
+import { connect } from "react-redux";
 
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 
-import thunkMiddleware from "redux-thunk";
-import { verifyAuth } from "../actions";
-import rootReducer from "../reducers";
-import { composeWithDevTools } from "redux-devtools-extension";
+
 import UsersTable from "./admin/usersTable";
 import ProductsTable from "./admin/productsTable";
-import {loadState, saveState, destroyState} from '../api/localStorage';
+import NotFound from "./NotFound";
 
-const persistedState = loadState();
-function configureStore(persistedState) {
-  const store = createStore(
-    rootReducer,
-    persistedState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware))
+
+const App = (props) => {
+  const {isAuthenticated, role} = props;
+  console.log(props);
+  const PrivateRoute = ({component:Component, ...rest}) => (
+    <Route {...rest} render={(props) => (
+      isAuthenticated === true && role === "admin" ? 
+        <Component {...props} />: <Redirect to='/signIn' />
+    )} />
   );
 
-  store.subscribe(() => {
-    saveState(store.getState());
-    setTimeout(() => {destroyState()},86400);
-  })
-
-  store.dispatch(verifyAuth());
-  return store;
-}
-
-const App = () => {
-  const store = configureStore(persistedState);
+  console.log(props);
   return (
-    <Provider store={store}>
+    <React.Fragment>
       <CssBaseline />
       <BrowserRouter>
       <Header />
@@ -71,12 +59,8 @@ const App = () => {
           <Route path="/ProductList" exact>
             <ProductList />
           </Route>
-          <Route path="/usersTable" exact>
-            <UsersTable />
-          </Route>
-          <Route path="/productsTable" exact>
-            <ProductsTable />
-          </Route>
+          <PrivateRoute path="/usersTable" exact component={UsersTable} />
+          <PrivateRoute path="/productsTable" exact component={ProductsTable} />
           <Route path="/cart" exact>
             <Cart />
           </Route>
@@ -86,11 +70,24 @@ const App = () => {
           <Route path="/aboutUs" exact>
            <AboutUs /> 
           </Route>
+          <Route path="/notFound" exact>
+           <NotFound /> 
+          </Route>
+          <Route path="*" exact>
+           <NotFound /> 
+          </Route>
         </Switch>
       </BrowserRouter>
       <Footer />
-    </Provider>
+    </React.Fragment>
   );
 };
 
-export default withRoot(App);
+const mapStateToProps = (state) => {
+  return{
+    isAuthenticated: state.auth.isAuthenticated,
+    role: state.auth.userShort.role
+  }
+}
+
+export default connect(mapStateToProps)(withRoot(App));
