@@ -158,6 +158,14 @@ const Header = (props) => {
       >
         {"Sign Up"}
       </Link>
+      <Link
+        variant="h6"
+        underline="none"
+        className={clsx(classes.linkSecondary, classes.alignCenter)}
+        to="/aboutUs"
+      >
+        {"About Us"}
+      </Link>
     </React.Fragment>
   );
   let logOut = () => {

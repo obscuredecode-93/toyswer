@@ -36,9 +36,10 @@ export default function MaterialTableDemo() {
   
   return (
     <MaterialTable
-      title="Editable Example"
+      title="Users Table"
       columns={rows.columns}
       data={rows.data}
+      style={{ marginTop: '11%'}}
       editable={{
         onRowAdd: newData =>
           new Promise(resolve => {

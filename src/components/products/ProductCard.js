@@ -59,6 +59,7 @@ const ProductCard = props => {
   const [quantity, setQuantity] = useState(0);
   const classes = useStyles();
   const handleClick = (product)=>{
+    console.log(product);
     props.addToCart(product); 
   }
   

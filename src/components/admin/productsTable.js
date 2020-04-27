@@ -9,7 +9,12 @@ const useStyles = makeStyles({
     table: {
        minWidth: 500,
        marginTop: +"100px",
-           },
+       paddingBottom: "30%",
+       backgroundColor:"blue",
+      },
+      space:{
+        height:'35%',
+      }
    },[]);
 
 
@@ -27,6 +32,7 @@ export default function ProductsTable() {
           { title: 'Details', field: 'pDetails'},
           { title: 'Link',field: 'pImgLink'},
           { title: 'Price', field: 'price'},
+          { title: 'Category', field: 'pCategory'},
         ],
         data: response.data
       });
@@ -34,10 +40,14 @@ export default function ProductsTable() {
     },[]);
 
   return (
+    <React.Fragment>
+    <div className={classes.space} ></div>
     <MaterialTable
-      title="Editable Example"
+      title="Prodcts Table"
       columns={rows.columns}
       data={rows.data}
+      style={{ marginTop: '11%'}}
+      className={classes.table}
       editable={{
         onRowAdd: newData =>
           new Promise(resolve => {
@@ -45,6 +55,7 @@ export default function ProductsTable() {
               resolve();
               setRows(prevState => {
                 const data = [...prevState.data];
+                axios.post('/add',newData);
                 data.push(newData);
                 return { ...prevState, data };
               });
@@ -77,6 +88,7 @@ export default function ProductsTable() {
             }, 600);
           }),
       }}
-    />
+      />
+      </React.Fragment>
   );                                                                    
 }

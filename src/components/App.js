@@ -13,6 +13,8 @@ import SignUp from "./SignUp";
 import Cart from './Cart';
 import Checkout from './Checkout';
 import ProductList from "./products/ProductList";
+import AboutUs from './AboutUs';
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { applyMiddleware, createStore } from "redux";
@@ -26,7 +28,7 @@ import rootReducer from "../reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import UsersTable from "./admin/usersTable";
 import ProductsTable from "./admin/productsTable";
-import {loadState, saveState} from '../api/localStorage';
+import {loadState, saveState, destroyState} from '../api/localStorage';
 
 const persistedState = loadState();
 function configureStore(persistedState) {
@@ -35,9 +37,10 @@ function configureStore(persistedState) {
     persistedState,
     composeWithDevTools(applyMiddleware(thunkMiddleware))
   );
-  
+
   store.subscribe(() => {
     saveState(store.getState());
+    setTimeout(() => {destroyState()},86400);
   })
 
   store.dispatch(verifyAuth());
@@ -79,6 +82,9 @@ const App = () => {
           </Route>
           <Route path="/checkout" exact>
            <Checkout /> 
+          </Route>
+          <Route path="/aboutUs" exact>
+           <AboutUs /> 
           </Route>
         </Switch>
       </BrowserRouter>
