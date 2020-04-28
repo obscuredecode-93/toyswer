@@ -1,9 +1,9 @@
 import withRoot from "../withRoot";
 // --- Post bootstrap -----
-import React from "react";
+import React, { useEffect } from "react";
 import { Field, Form, FormSpy } from "react-final-form";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { loginUser } from "../actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
@@ -38,9 +38,6 @@ function SignIn(props) {
   const classes = useStyles();
   const [sent, setSent] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(true);
-  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -49,7 +46,17 @@ function SignIn(props) {
 
     setOpen(false);
   };
+  const history = useHistory();
+  console.log(props);
   const { loginError, isAuthenticated, error } = props;
+  useEffect(() => {
+    if(loginError){
+      setOpen(true);
+      setSent(false);
+      return <Redirect to="/signIn" />
+    }
+},[])
+
   //console.log(props);
   if (isAuthenticated) {
     return <Redirect to="/" />;

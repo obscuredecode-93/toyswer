@@ -60,7 +60,6 @@ function ProductHero(props) {
       { isAuthenticated? generateSnackbar("Successfully signed in!"): null}
       { hasRegistered? generateSnackbar("Successfully signed in!"): null}
       {/* Increase the network loading priority of the background image. */}
-      <img style={{ display: 'none' }} src={backgroundImage} alt="increase priority" />
       <Typography color="inherit" align="center" variant="h2" marked="center">
         Discover a new world for your child
       </Typography>

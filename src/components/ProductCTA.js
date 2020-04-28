@@ -5,10 +5,22 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Container from '@material-ui/core/Container';
 import Typography from '../shared/Typography';
+import { Form, Field, FormSpy } from 'react-final-form';
+import FormFeedback from './form/FormFeedback';
+import { email, required } from "./form/validation";
+
 import TextField from '../shared/TextField';
 import Snackbar from '../shared/Snackbar';
 import Button from '../shared/Button';
 import donationBanner from '../img/donationBanner.jpg';
+
+const TextFieldAdapter = ({ input, meta, ...rest }) => (
+  <TextField
+    {...input}
+    {...rest}
+    errorText = {meta.touched ? meta.error : ''}
+  />
+)
 
 const styles = (theme) => ({
   root: {
@@ -64,7 +76,6 @@ function ProductCTA(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     setOpen(true);
   };
 
@@ -72,23 +83,53 @@ function ProductCTA(props) {
     setOpen(false);
   };
 
+  const validate = (values) => {
+    console.log(values)
+    const errors = required(["donationEmail"], values);
+    if (!errors.email) {
+      const emailError = email(values.donationEmail, values);
+      if (emailError) {
+        errors.email = email(values.donationEmail, values);
+      }
+    }
+
+    console.log(errors)
+    return errors;
+  };
+
   return (
     <Container className={classes.root} component="section">
       <Grid container>
         <Grid item xs={12} md={6} className={classes.cardWrapper}>
           <div className={classes.card}>
-            <form onSubmit={handleSubmit} className={classes.cardContent}>
-              <Typography variant="h2" component="h2" gutterBottom>
-                Donate now!
-              </Typography>
-              <Typography variant="h5">
-                A small token from you can make a huge difference.
-              </Typography>
-              <TextField noBorder className={classes.textField} placeholder="Your email" />
-              <Button type="submit" color="primary" variant="contained" className={classes.button}>
-                Sign me up to the mailing list
-              </Button>
-            </form>
+            <Form onSubmit={handleSubmit}   
+            subscription={{ submitting: true }}
+            validate={validate}
+            >
+              {({ handleSubmit,submitting,form }) => (
+                <form onSubmit={handleSubmit} className={classes.cardContent}>
+                  <Typography variant="h2" component="h2" gutterBottom>
+                    Donate now!
+                  </Typography>
+                  <Typography variant="h5">
+                    A small token from you can make a huge difference.
+                  </Typography>
+                  <Field name="donationEmail" noBorder required validate={email} component={TextFieldAdapter} className={classes.textField} placeholder="Your email" />
+                  <FormSpy subscription={{ submitError: true }}>
+                  {({ submitError }) =>
+                    submitError ? (
+                      <FormFeedback className={classes.feedback} error>
+                        {submitError}
+                      </FormFeedback>
+                    ) : null
+                  }
+                </FormSpy>
+                  <Button type="submit" color="primary" variant="contained" className={classes.button}>
+                    Sign me up to the mailing list
+                  </Button>
+                </form>
+              )}
+            </Form>
           </div>
         </Grid>
         <Grid item xs={12} md={6} className={classes.imagesWrapper}>

@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '../shared/Typography';
-
+import { Redirect,useHistory } from 'react-router-dom';
 const styles = (theme) => ({
   root: {
     display: 'flex',
@@ -30,12 +30,12 @@ const styles = (theme) => ({
 
 function ProductSmokingHero(props) {
   const { classes } = props;
-
+  const history = useHistory();
   return (
     <Container className={classes.root} component="section">
-      <Button className={classes.button}>
+      <Button className={classes.button} onClick={() => history.push("/aboutUs")}>
         <Typography variant="h4" component="span">
-          Got any questions? Need help?
+          Meet our Fabulous Team!!!
         </Typography>
       </Button>
       <Typography variant="subtitle1" className={classes.link}>

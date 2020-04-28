@@ -15,6 +15,14 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
+import Anurag from '../Images/Anurag.jpeg';
+import Husain from '../Images/Husain.jpeg';
+import Rakesh from '../Images/Rakesh.jpeg';
+import Sagar from '../Images/Sagar.jpeg';
+
 
 import Typography from '../shared/Typography';
 import CompanyLogo from '../Images/CompanyLogo.png';
@@ -53,6 +61,9 @@ const useStyles = makeStyles(theme => ({
       },
       avatarImage:{
         borderRadius:'50%',
+      },
+      photoGrid:{
+          marginBottom:'10%',
       }
 }));
 
@@ -79,20 +90,33 @@ const AboutUs = () => {
     };
     return(
         <Container className={classes.root}>
-            <Typography variant="h4" align="left" >About Us</Typography>
-            <Box className={classes.bannerImage}>
-                <Image src={CompanyLogo}  />
-            </Box>
-            <Typography variant="body2" align="left">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-            Donec in lectus dignissim, ornare purus in, laoreet nisl. Maecenas nisi lorem,
-            rutrum nec elit ac, viverra tincidunt lorem. 
-            Ut sagittis ac libero eget ornare. Vestibulum ante ipsum primis in faucibus orci luctus et
-            ultrices posuere cubilia curae; Vivamus efficitur maximus mi, 
-            a aliquet lectus ultrices nec. Nam sagittis tempus hendrerit. Suspendisse potenti. Curabitur a risus bibendum, sollicitudin purus sit amet, pharetra sapien. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum egestas, lorem in condimentum gravida, dolor dolor pharetra leo, vel volutpat lacus libero at urna. Curabitur semper ultricies lacus, vitae mattis ligula blandit eget. Nunc sit amet erat non nunc commodo vehicula. 
-            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-            </Typography>
-
+            <Typography variant="h2" color="primary">Meet out Team!</Typography>
+            <Grid container justify="space-between" direction="row" className={classes.photoGrid}>
+                <Grid xs={12} sm={3} item >
+                    <Box>
+                        <Image src={Husain} />
+                        <Typography variant="subtitle2" color="primary" align="center">Husain Ali</Typography>
+                    </Box>
+                </Grid>
+                <Grid xs={12} sm={3} item>
+                    <Box>
+                        <Image src={Anurag} />
+                        <Typography variant="subtitle2" color="primary" align="center">Anurag</Typography>
+                    </Box>
+                </Grid>
+                <Grid xs={12} sm={3} item>
+                    <Box>
+                        <Image src={Rakesh} />
+                        <Typography variant="subtitle2" color="primary" align="center">Rakesh Roshan</Typography>
+                    </Box>
+                </Grid>
+                <Grid xs={12} sm={3} item>
+                    <Box>
+                        <Image src={Sagar} />
+                        <Typography variant="subtitle2" color="primary" align="center">Sagar Bohra</Typography>
+                    </Box>
+                </Grid>
+            </Grid>
             <Grid container spacing={3}>
                 <Grid item lg={6} md={6} xs={12}>
                         <Card className={classes.cardRoot}>
@@ -113,15 +137,15 @@ const AboutUs = () => {
                                 </Grid>
                                 <Divider />
                                 <Typography variant="body1">
-                                    BOL TU EK NUMBER CHA CHUTIYA AAHES
+                                    Backend bear
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
+                                <IconButton aria-label="add to favorites" onClick={(() => window.location.href="")}>
+                                    <FacebookIcon />
                                 </IconButton>
                                 <IconButton aria-label="share">
-                                    <ShareIcon />
+                                    <LinkedInIcon />
                                 </IconButton>
                                 <IconButton
                                     className={clsx(classes.expand, {
@@ -137,9 +161,7 @@ const AboutUs = () => {
                             <Collapse in={expanded1} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>
-                                        Ek Number cha chutiya aahes
-                                        Ek Number cha chutiya aahes
-                                        Ek Number cha chutiya aahes
+                                        He is very good at Java and Spring
                                         </Typography>   
                                 </CardContent>
                             </Collapse>
@@ -164,15 +186,15 @@ const AboutUs = () => {
                                 </Grid>
                                 <Divider />
                                 <Typography variant="body1">
-                                    BOL TU PAKKA MADARCHOD AAHES
+                                    Testing Tuna
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
+                            <IconButton aria-label="add to favorites" onClick={(() => window.location.href="")}>
+                                    <FacebookIcon />
                                 </IconButton>
                                 <IconButton aria-label="share">
-                                    <ShareIcon />
+                                    <LinkedInIcon />
                                 </IconButton>
                                 <IconButton
                                     className={clsx(classes.expand, {
@@ -188,9 +210,7 @@ const AboutUs = () => {
                             <Collapse in={expanded2} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>
-                                        Pakka Madarchod Aahe
-                                        Pakka Madarchod Aahe
-                                        Pakka Madarchod Aahe
+                                       Munch those bugs away!
                                     </Typography>   
                                 </CardContent>
                             </Collapse>
@@ -215,15 +235,15 @@ const AboutUs = () => {
                                 </Grid>
                                 <Divider />
                                 <Typography variant="body1">
-                                    TONDAT GHEUN CHOK MAJA
+                                    Data Dog
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
+                                <IconButton aria-label="add to favorites" onClick={(() => window.location.href="")}>
+                                    <FacebookIcon />
                                 </IconButton>
                                 <IconButton aria-label="share">
-                                    <ShareIcon />
+                                    <LinkedInIcon />
                                 </IconButton>
                                 <IconButton
                                     className={clsx(classes.expand, {
@@ -239,9 +259,7 @@ const AboutUs = () => {
                             <Collapse in={expanded3} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>
-                                        ASHRAF ALI!
-                                        ASHRAF ALI!
-                                        ASHRAF ALI!
+                                        Great at R and PySpark
                                     </Typography>   
                                 </CardContent>
                             </Collapse>
@@ -256,7 +274,7 @@ const AboutUs = () => {
                                         <Image align="center" 
                                             alt="Anurag Lakshminarayan"  
                                             className={classes.avatarImage}
-                                            src="https://media-exp1.licdn.com/dms/image/C4E03AQGbgbWi_Qkiuw/profile-displayphoto-shrink_800_800/0?e=1593648000&v=beta&t=KFaHi_gO5Enwojx4G2O6xkqoqgPVBkU2cYpV1QG2V84"
+                                            src="https://media-exp1.licdn.com/dms/image/C5603AQGwx7rdvNT9Yg/profile-displayphoto-shrink_200_200/0?e=1593648000&v=beta&t=VRep1mKoUHV5cD-IG50IUUN63hMKURbTL9bqk3HhNPo"
                                         />
                                         </Box>
                                     </Grid>
@@ -266,7 +284,7 @@ const AboutUs = () => {
                                 </Grid>
                                 <Divider />
                                 <Typography variant="body1">
-                                    TU BASLAYS LAVDYA WAR!
+                                    Frontend Fanatic
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
@@ -290,9 +308,7 @@ const AboutUs = () => {
                             <Collapse in={expanded4} timeout="auto" unmountOnExit>
                                 <CardContent>
                                     <Typography paragraph>
-                                        TU BASLAYS LAVDYA WAR!
-                                        TU BASLAYS LAVDYA WAR!
-                                        Majha papa cha lavdya war!
+                                        Great at React and Angular
                                     </Typography>   
                                 </CardContent>
                             </Collapse>
