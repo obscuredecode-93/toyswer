@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MaterialTable from 'material-table';
 import axios from "../../api/products";
 
-
+// hook for css styles
 const useStyles = makeStyles({
     table: {
        minWidth: 500,
@@ -17,11 +16,12 @@ const useStyles = makeStyles({
       }
    },[]);
 
-
+//admin products table
 export default function ProductsTable() {
     const classes = useStyles();
-    const [rows, setRows] = useState([]);
+    const [rows, setRows] = useState([]); //used to set rows in products table
     useEffect(() => {
+      //get all rows
        axios.get("/all", {}).then((response) => {
        setRows({
         columns: [
@@ -40,6 +40,7 @@ export default function ProductsTable() {
   return (
     <React.Fragment>
     <div className={classes.space} ></div>
+    { /* Populating Products table, we are using Material Table for this*/ }
     <MaterialTable
       title="Prodcts Table"
       columns={rows.columns}
@@ -47,6 +48,7 @@ export default function ProductsTable() {
       style={{ marginTop: '11%'}}
       className={classes.table}
       editable={{
+        //call api on row add
         onRowAdd: newData =>
           new Promise(resolve => {
             setTimeout(() => {
@@ -60,6 +62,7 @@ export default function ProductsTable() {
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
+          //call api on row update
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
@@ -74,6 +77,7 @@ export default function ProductsTable() {
             }, 600);
           }),
         onRowDelete: oldData =>
+          //call api on row delete
           new Promise(resolve => {
             setTimeout(() => {
               resolve();

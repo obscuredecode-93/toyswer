@@ -1,6 +1,7 @@
 import { ADD_TO_CART,REMOVE_ITEM,SUB_QUANTITY,ADD_QUANTITY } from './types';
 
 
+//Add to cart Action creator
 export const addToCart= (product)=>{
     return{
         type: ADD_TO_CART,

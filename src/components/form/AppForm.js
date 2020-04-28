@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '../../shared/Paper';
 
+// this ensures our website has a consistent theme
 const styles = (theme) => ({
   root: {
     display: 'flex',
@@ -26,6 +27,7 @@ function AppForm(props) {
     <div className={classes.root}>
       <Container maxWidth="sm">
         <Box mt={7} mb={12}>
+          {/* We use this as a wrapper classes for our signIn and signUp forms.This ensures a uniform look-and-feel*/}
           <Paper className={classes.paper}>{children}</Paper>
         </Box>
       </Container>
@@ -38,4 +40,5 @@ AppForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+//withStyles is an api supplied by Material UI to apply custom styles
 export default withStyles(styles)(AppForm);

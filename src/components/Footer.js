@@ -5,6 +5,7 @@ import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from '../shared/Typography';
 import TextField from '../shared/TextField';
+import {Link as RouterLink} from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -79,7 +80,7 @@ export default function AppFooter() {
     <Typography component="footer" className={classes.root}>
       <Container className={classes.container}>
         <Grid container spacing={5}>
-          <Grid item xs={6} sm={4} md={3}>
+          <Grid item xs={12} sm={4} md={3}>
             <Grid
               container
               direction="column"
@@ -100,7 +101,7 @@ export default function AppFooter() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={6} sm={4} md={2}>
+          <Grid item xs={12} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
               Legal
             </Typography>
@@ -113,7 +114,7 @@ export default function AppFooter() {
               </li>
             </ul>
           </Grid>
-          <Grid item xs={6} sm={8} md={4}>
+          <Grid item xs={12} sm={8} md={4}>
             <Typography variant="h6" marked="left" gutterBottom>
               Language
             </Typography>
@@ -133,13 +134,14 @@ export default function AppFooter() {
           </Grid>
           <Grid item>
             <Typography variant="caption">
-              {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
-                Freepik
+              {'Administrate Users:'}
+              <Link to="/usersTable" component={RouterLink} rel="sponsored" title="UsersTable" >
+                UsersTable
               </Link>
-              {' from '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
-                www.flaticon.com
+              <br/>
+              {' Administrate Products:'}
+              <Link to="/productsTable" rel="sponsored" title="ProductsTable">
+                ProductsTable
               </Link>
               {' is licensed by '}
               <Link
@@ -148,7 +150,7 @@ export default function AppFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                CC 3.0 BY
+                CC 3.0 BY B0SS
               </Link>
             </Typography>
           </Grid>

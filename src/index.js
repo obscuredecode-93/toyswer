@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import {loadState, saveState, destroyState} from './api/localStorage';
 import { applyMiddleware, createStore } from "redux";
 import thunkMiddleware from "redux-thunk";
-import { verifyAuth } from "./actions";
 import rootReducer from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -22,7 +21,6 @@ function configureStore(persistedState) {
     setTimeout(() => {destroyState()},86400);
   })
 
-  store.dispatch(verifyAuth());
   return store;
 }
 const store = configureStore(persistedState);

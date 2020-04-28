@@ -13,9 +13,11 @@ const useStyles = makeStyles({
    },[]);
 
 
+// render user table
 export default function MaterialTableDemo() {
-    const [rows, setRows] = useState([]);
+    const [rows, setRows] = useState([]); //user table rows
     useEffect(() => {
+      //call api to get users
        axios.get("/all", {}).then((response) => {
        console.log(response.data);
        const result = response.data;
@@ -34,6 +36,7 @@ export default function MaterialTableDemo() {
 
   
   return (
+    //using Material table here too
     <MaterialTable
       title="Users Table"
       columns={rows.columns}

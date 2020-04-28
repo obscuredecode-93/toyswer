@@ -8,12 +8,15 @@ import {
   REGISTER_FAILURE,
 } from "./types";
 import axios from "../api/axios";
+
+//action for requesting login
 const requestLogin = () => {
   return {
     type: LOGIN_REQUEST,
   };
 };
 
+//action for recieving login
 const receiveLogin = (userShort) => {
   return {
     type: LOGIN_SUCCESS,
@@ -21,6 +24,7 @@ const receiveLogin = (userShort) => {
   };
 };
 
+//action for login error
 const loginError = (error) => {
   return {
     type: LOGIN_FAILURE,
@@ -30,6 +34,7 @@ const loginError = (error) => {
 
 
 
+//action for recieving logout
 const receiveLogout = () => {
   return {
     type: LOGOUT_SUCCESS,
@@ -37,13 +42,14 @@ const receiveLogout = () => {
 };
 
 
-
+//action for requesting registration
 const registerRequest = () => {
   return {
     type: REGISTER_REQUEST,
   };
 };
 
+//action for successful registration
 const registerSuccess = (user) => {
   return {
     type: REGISTER_SUCCESS,
@@ -51,12 +57,14 @@ const registerSuccess = (user) => {
   };
 };
 
+//action for registration error
 const registerError = () => {
   return {
     type: REGISTER_FAILURE,
   };
 };
 
+//login user dispatch function
 export const loginUser = (email, password) => (dispatch) => {
   dispatch(requestLogin());
   axios
@@ -79,10 +87,12 @@ export const loginUser = (email, password) => (dispatch) => {
     });
 };
 
+//logout user dispatch function
 export const logoutUser = () => (dispatch) => {
    dispatch(receiveLogout());
 };
 
+//register user dispatch function
 export const registerUser = (
   firstname,
   lastname,
@@ -109,13 +119,4 @@ export const registerUser = (
     .catch((error) => {
       dispatch(registerError());
     });
-};
-export const verifyAuth = () => (dispatch) => {
-  // dispatch(verifyRequest());
-  // myFirebase.auth().onAuthStateChanged((user) => {
-  //   if (user !== null) {
-  //     dispatch(receiveLogin(user));
-  //   }
-  //   dispatch(verifySuccess());
-  // });
 };

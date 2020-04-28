@@ -74,8 +74,8 @@ const App = (props) => {
            <NotFound /> 
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </React.Fragment>
   );
 };
