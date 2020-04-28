@@ -63,7 +63,8 @@ const useStyles = makeStyles(theme => ({
         borderRadius:'50%',
       },
       photoGrid:{
-          marginBottom:'10%',
+          marginBottom:'2%',
+          marginTop:'2%',
       }, 
       imgWrapper:{
           width:'90%',
@@ -92,8 +93,8 @@ const AboutUs = () => {
         setExpanded4(!expanded4);
     };
     return(
-        <Container className={classes.root}>
-            <Typography variant="h2" color="primary">Meet our Team!</Typography>
+        <Container className={classes.root} maxWidth="sm">
+            <Typography variant="h2" color="primary" align="center">Meet our Team!</Typography>
             <Grid container spacing={5} direction="row" className={classes.photoGrid}>
                 <Grid xs={12} sm={3} item >
                     <Box className={classes.imgWrapper}>
@@ -120,7 +121,8 @@ const AboutUs = () => {
                     </Box>
                 </Grid>
             </Grid>
-            <Typography variant="body2">As ToysWeR, we specialize in the production and design of quality toys and consumer
+            <Box fontStyle="oblique">
+            <Typography variant="body2" align="justify" >As ToysWeR, we specialize in the production and design of quality toys and consumer
                 products. Our products inspire, entertain, and develop children to play. Through our website, we
                 market toys, apparel, electronic goods, accessories, and all there is for kids. Our website is a
                 multi-platform application apt for both mobile as well as desktop devices. Various design
@@ -132,7 +134,8 @@ const AboutUs = () => {
                 We are currently serving over 28,000 customers in 18 cities in the United States and the United
                 Kingdom. We started out from a garage, as 4 friends, with the sole objective of design and
                 production of quality toys.</Typography>
-                <br/>
+            </Box>
+            <br/>
             <Grid container spacing={3}>
                 <Grid item lg={6} md={6} xs={12}>
                         <Card className={classes.cardRoot}>

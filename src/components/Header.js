@@ -226,8 +226,8 @@ const Header = (props) => {
           </IconButton>
           
         </div>
-        { isAuthenticated?<Typography variant="h6"> Hello, {user.firstname} </Typography>:null}
-        <Link to="/cart" color="inherit" component={RouterLink} >
+        { isAuthenticated?<Typography variant="h6" color="inherit"> Hello, {user.firstname} </Typography>:null}
+        <Link to="/cart" color="inherit" component={RouterLink} style={{ marginLeft:'3%'}} >
           <ShoppingCartIcon/>
         </Link>
         <IconButton
