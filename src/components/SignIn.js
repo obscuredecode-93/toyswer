@@ -51,10 +51,15 @@ function SignIn(props) {
   const { loginError, isAuthenticated, error } = props;
   useEffect(() => {
     if(loginError){
-      setOpen(true);
       setSent(false);
-      return <Redirect to="/signIn" />
+      setOpen(true);
     }
+},[loginError])
+
+useEffect(() => {
+  if(loginError){
+    setSent(true);
+  }
 },[])
 
   //console.log(props);
@@ -112,7 +117,7 @@ function SignIn(props) {
           >
             {({ handleSubmit, submitting,form }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
-                {console.log(form)}
+                {loginError? submitting = false: null}
                 <Field
                   autoComplete="email"
                   autoFocus

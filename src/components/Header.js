@@ -1,6 +1,6 @@
 import "./Header.css";
 import { useHistory } from 'react-router-dom';
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import AppBar from "../shared/AppBar";
 import Typography from "../shared/Typography";
@@ -176,6 +176,16 @@ const Header = (props) => {
     const { dispatch } = props;
     dispatch(logoutUser());
   };
+  let [searchTerm, setSearchTerm] = React.useState("");
+  const updateSearchTerm = (e) => {
+      setSearchTerm(e.target.value);
+  }
+  const searchItems = (e) => {
+    console.log(e.which);
+    if(e.which === 13){
+      props.history.push({ pathname:'/ProductList', state:{type:'search', searchTerm}})
+    }
+  }
   let loggedInJSX = (
     <React.Fragment>
       <Link
@@ -254,6 +264,8 @@ const Header = (props) => {
               color="primary"
               placeholder="Enter Search"
               className={classes.searchInput}
+              onKeyPress ={searchItems}
+              onChange = {updateSearchTerm}
               InputProps={{
                 className: classes.searchInputInside,
                 endAdornment: (

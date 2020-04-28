@@ -17,3 +17,4 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SUB_QUANTITY = 'SUB_QUANTITY';
 export const ADD_QUANTITY = 'ADD_QUANTITY';
 export const ADD_SHIPPING = 'ADD_SHIPPING';
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';

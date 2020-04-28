@@ -8,7 +8,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ProductsToolbar from './ProductsToolbar';
 import ProductCard from './ProductCard';
-import {getProductsByCategory} from "../../actions";
+import {getProductsByCategory, searchProducts} from "../../actions";
 import { connect } from 'react-redux';
 
 //import threeandUpImage from '../img/ages3andUp.jpg';
@@ -34,13 +34,18 @@ const useStyles = makeStyles(theme => ({
 const ProductList = (props) => {
   const classes = useStyles();
   const location = useLocation();
-  const { category } = location.state;
+  const {state} = location;
+  const { category,searchTerm,type } = location.state;
   const {products} = props;
   console.log(props);
   useEffect(()=> {
     const { dispatch } = props;
-    dispatch(getProductsByCategory(category));
-  },[])
+    console.log(type);
+    if(type === 'category')
+      dispatch(getProductsByCategory(category));
+    else if(type === 'search')
+      dispatch(searchProducts(searchTerm));
+  },[category, searchTerm])
   let renderList = (list) => {
     if(products.length === 0)
     {

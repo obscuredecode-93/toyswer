@@ -1,4 +1,5 @@
 import React from 'react';
+import {useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -198,6 +199,7 @@ function ProductCategories(props) {
                 <Link className={classes.categoryText} component={RouterLink} to={{
                   pathname:"/ProductList",
                   state:{
+                    type:'category',
                     category: image.pCategory
                   }
                  }}>{image.title}</Link> 

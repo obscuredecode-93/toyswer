@@ -1,7 +1,8 @@
 import {
     RETRIEVE_PRODUCTS,
     RETRIEVE_PRODUCTS_SUCCESS,
-    RETRIEVE_PRODUCTS_FAILURE
+    RETRIEVE_PRODUCTS_FAILURE,
+    SEARCH_PRODUCTS
 } from '../actions/types';
 
 export default (
@@ -23,6 +24,12 @@ export default (
             productsRetrieved: true,
             products: action.products
         };
+    case SEARCH_PRODUCTS:
+        return {
+            ...state,
+            productsRetrieved: true,
+            products: action.products
+        }
         default:
             //console.log("Inside");
             return state;

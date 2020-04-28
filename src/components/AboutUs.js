@@ -64,6 +64,9 @@ const useStyles = makeStyles(theme => ({
       },
       photoGrid:{
           marginBottom:'10%',
+      }, 
+      imgWrapper:{
+          width:'90%',
       }
 }));
 
@@ -90,33 +93,46 @@ const AboutUs = () => {
     };
     return(
         <Container className={classes.root}>
-            <Typography variant="h2" color="primary">Meet out Team!</Typography>
-            <Grid container justify="space-between" direction="row" className={classes.photoGrid}>
+            <Typography variant="h2" color="primary">Meet our Team!</Typography>
+            <Grid container spacing={5} direction="row" className={classes.photoGrid}>
                 <Grid xs={12} sm={3} item >
-                    <Box>
+                    <Box className={classes.imgWrapper}>
                         <Image src={Husain} />
                         <Typography variant="subtitle2" color="primary" align="center">Husain Ali</Typography>
                     </Box>
                 </Grid>
                 <Grid xs={12} sm={3} item>
-                    <Box>
+                    <Box className={classes.imgWrapper}>
                         <Image src={Anurag} />
                         <Typography variant="subtitle2" color="primary" align="center">Anurag</Typography>
                     </Box>
                 </Grid>
                 <Grid xs={12} sm={3} item>
-                    <Box>
+                    <Box className={classes.imgWrapper}>
                         <Image src={Rakesh} />
                         <Typography variant="subtitle2" color="primary" align="center">Rakesh Roshan</Typography>
                     </Box>
                 </Grid>
                 <Grid xs={12} sm={3} item>
-                    <Box>
+                    <Box className={classes.imgWrapper}>
                         <Image src={Sagar} />
                         <Typography variant="subtitle2" color="primary" align="center">Sagar Bohra</Typography>
                     </Box>
                 </Grid>
             </Grid>
+            <Typography variant="body2">As ToysWeR, we specialize in the production and design of quality toys and consumer
+                products. Our products inspire, entertain, and develop children to play. Through our website, we
+                market toys, apparel, electronic goods, accessories, and all there is for kids. Our website is a
+                multi-platform application apt for both mobile as well as desktop devices. Various design
+                principles learned in the course IS Design &amp; Development has been integrated into the website.
+                ToysWeR is a toy manufacturing and selling company that was started in 2012. We aren’t a
+                legacy yet, but we are making our own new frontiers. We specialize in the production and
+                design of quality toys and consumer products. Our products inspire, entertain, and develop
+                children to play. Our huge selection of toys for all age groups put smiles on every child’s face.
+                We are currently serving over 28,000 customers in 18 cities in the United States and the United
+                Kingdom. We started out from a garage, as 4 friends, with the sole objective of design and
+                production of quality toys.</Typography>
+                <br/>
             <Grid container spacing={3}>
                 <Grid item lg={6} md={6} xs={12}>
                         <Card className={classes.cardRoot}>
@@ -288,11 +304,11 @@ const AboutUs = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions disableSpacing>
-                                <IconButton aria-label="add to favorites">
-                                    <FavoriteIcon />
+                                <IconButton aria-label="add to favorites" onClick={(() => window.location.href="")}>
+                                    <FacebookIcon />
                                 </IconButton>
                                 <IconButton aria-label="share">
-                                    <ShareIcon />
+                                    <LinkedInIcon />
                                 </IconButton>
                                 <IconButton
                                     className={clsx(classes.expand, {
